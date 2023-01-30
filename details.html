@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AdvanceJs MCT (Movie App)</title>
+    <link rel="stylesheet" href="details.css" />
+</head>
+
+<body>
+
+
+    <div id="container" class="container">
+        <div class="shadow" id="shadow"></div>
+        <div class="navbar">
+            <div class="left_navbar">
+                <p>The Movie Search</p>
+            </div>
+            <div class="right_navbar">
+                <p class="first_rightNavbar"><a href="index.html">Home</a></p>
+                <p class="second_rightNavbar">Search</p>
+            </div>
+        </div>
+        <div id="banner" class="banner"></div>
+        <div id="bottom" class="bottom"></div>
+    </div>
+
+    <script>
+        let queryString = location.search.substring(1);
+        let a = queryString.split("|");
+
+        let banner = a[0];
+        let posterImage = a[1];
+        let vote_average = a[2];
+        let release_date = a[3];
+        let popularity = a[4];
+        let original_language = a[5];
+        let original_title = a[6];
+        let overview = a[7];
+
+
+        let key = original_title.replace(/_/g, " ");
+        let key_overview = overview.replace(/_/g, " ");
+
+        const shadow = document.getElementById('shadow');
+        const img = document.createElement('img');
+        img.setAttribute('src', banner);
+        img.setAttribute('class', 'demo');
+        shadow.appendChild(img);
+
+
+        const bannerId = document.getElementById("banner");
+        bannerId.innerHTML += `
+                            <div class="left_banner">
+                                <img src=${posterImage} alt="">
+                            </div>
+                            <div class="right_banner">
+                                <div class="circle">
+                                    <p>${vote_average} <br> <span class="circle_span"> IMDB </span ></p>
+                                </div>
+                                <div class="content">
+                                    <p>${release_date}</p>
+                                    <p>${popularity}</p>
+                                    <p>${original_language}</p>
+                                </div>
+                                <div class="mainContent">
+                                    <span>Action</span>  <span class="verticalLine">Romance</span> <span class="verticalLine">Comedy</span></p>
+                                    <p>${key}</p>
+                                </div>
+                            </div>`;
+
+
+        const bottom = document.getElementById('bottom');
+        bottom.innerHTML = `
+                                    <div class="bottom_left">
+                                        <p class="plot">Plot</p>
+                                        <div class="horizontalLine"></div>
+                                        <p class="description">${key_overview}</p>
+                                    </div>
+                                    <div class="bottom_right">
+                                        <p class="cast">Cast</p>
+                                        <div class="horizontalLine"></div>
+                                        <div class="all_photo_names">
+                                            <div class="photo_name">
+                                                <img src="https://image.tmdb.org/t/p/w45/pUL1vDXRmQWLyLVOpSiAyYIqgSJ.jpg" alt="">
+                                                <p>Jennifer Lopez</p>
+                                            </div>
+                                            <div class="photo_name">
+                                                <img src="https://image.tmdb.org/t/p/w45/n2hXiC2MABZnZoQKtWLkP73LKWe.jpg" alt="">
+                                                <p>Tyler Hoechlin</p>
+                                            </div>
+                                            <div class="photo_name">
+                                                <img src="https://image.tmdb.org/t/p/w45/pIoGuEUax5aeH3PKuaYK9wKEeoj.jpg" alt="">
+                                                <p>Lenny Kravitz</p>
+                                            </div>
+                                            <div class="photo_name">
+                                                <img src="https://image.tmdb.org/t/p/w45/l19Wm7THkntzUgjWgCHS0ouvBzV.jpg" alt="">
+                                                <p>Crystal Reed</p>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                                    
+    </script>
+</body>
+
+</html>
